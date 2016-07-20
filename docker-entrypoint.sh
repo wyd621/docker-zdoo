@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # 然之持久化操作
+mkdir -p /data/session
 
 persist_dirs="www/data config tmp"
 dest_dir=/data/ranzhi

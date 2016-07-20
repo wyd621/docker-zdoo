@@ -46,9 +46,8 @@ RUN mkdir -p /app/install && \
     rm -rf /app/install
 
 
-VOLUME /data/session
-VOLUME /mnt/data
+VOLUME /data
 
-EXPOSE 5000
+#EXPOSE 5000
 
 ENTRYPOINT ["/app/docker-entrypoint.sh"]
