@@ -18,17 +18,8 @@ COPY config/nginx.conf /etc/nginx/nginx.conf
 
 RUN mkdir -p /app/install && \
     cd /app/install && \
-    curl -fSL "http://dl.cnezsoft.com/chanzhi/mall/1.0/php5.6/chanzhimall.zip?2016628" \
-         -o chanzhimall.zip && \
-    unzip -qon chanzhimall.zip -d /app/zdoo && \
-
-    curl -fSL "http://dl.cnezsoft.com/ranzhi/pro.1.0/ranzhi.Pro1.0.stable.zip?v=160420" \
-             -o ranzhi.zip && \
-    unzip -qon ranzhi.zip -d /app/zdoo && \
-
-    curl -fSL "http://dl.cnezsoft.com/zentao/pro5.3/ZenTaoPMS.Pro5.3.stable.zip" \
-             -o zentaopms.zip && \
-    unzip -qon zentaopms.zip -d /app/zdoo && \
+    curl -fSL http://lang.goodrain.me/tmp/zdoo.zip  -o  zdoo.zip  && \
+    unzip -qon zdoo.zip -d /app/zdoo && \
 
     curl -fSL "http://downloads.zend.com/guard/7.0.0/zend-loader-php5.6-linux-x86_64.tar.gz" \
         -o zend-loader-php5.6-linux-x86_64.tar.gz && \

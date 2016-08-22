@@ -25,7 +25,7 @@ echo "ranzhi success"
 # 禅道安装持久化目录
 persist_dirs="www/data config tmp module"
 dest_dir=/data/zentaopms
-source_dir=/app/zdoo/zentaopms
+source_dir=/app/zdoo/zentao
 mkdir -p ${dest_dir}
 # 在持久化存储中创建需要的目录
 for d in ${persist_dirs} ; do
@@ -55,7 +55,7 @@ fi
 # 蝉知安装持久化目录
 persist_dirs="system/config system/module system/tmp www/data"
 dest_dir=/data/chanzhimall5.6
-source_dir=/app/zdoo/chanzhimall5.6
+source_dir=/app/zdoo/chanzhi
 mkdir -p ${dest_dir}
 # 在持久化存储中创建需要的目录
 for d in ${persist_dirs} ; do
