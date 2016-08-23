@@ -17,7 +17,6 @@ RUN apt-get update && apt-get install -y \
         net-tools \
     --no-install-recommends && rm -r /var/lib/apt/lists/*
 
-
 RUN docker-php-ext-install \
         mysql \
         mysqli \
@@ -29,7 +28,7 @@ RUN docker-php-ext-install \
         mcrypt \
         gd 
  
-RUN mkdir -p /app/zdoo
+RUN mkdir -p /app/
 
 COPY docker-entrypoint.sh /app
 
@@ -37,7 +36,7 @@ COPY config/000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY config/apache2.conf /etc/apache2/apache2.conf
 COPY config/ports.conf /etc/apache2/ports.conf
 
-ADD zdoo.zip /app/
+RUN curl http://lang.goodrain.me/tmp/zdoo.zip -o /app/zdoo.zip 
 
 RUN cd /app && unzip zdoo.zip && rm zdoo.zip
 
