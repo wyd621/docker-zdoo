@@ -75,6 +75,4 @@ echo "chanzhi success"
 # 设置权限
 chmod -R 777 /data/
 
-nginx
-
-php-fpm
+apache2-foreground
