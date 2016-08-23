@@ -1,4 +1,4 @@
-FROM php:5.6-fpm
+FROM php:5.6-apache
 
 # 时区设置
 RUN echo "Asia/Shanghai" > /etc/timezone && \
