@@ -14,12 +14,22 @@ RUN echo "Asia/Shanghai" > /etc/timezone && \
     mkdir -p /app/zdoo
 
 COPY docker-entrypoint.sh /app
-COPY config/nginx.conf /etc/nginx/nginx.conf
+COPY config/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY config/apache2.conf /etc/apache2/apache2.conf
 
 RUN mkdir -p /app/install && \
     cd /app/install && \
     curl -fSL http://lang.goodrain.me/tmp/zdoo.zip  -o  zdoo.zip  && \
-    unzip -qon zdoo.zip -d /app/zdoo && \
+    unzip -qon zdoo.zip -d /app/ && \
+    docker-php-source extract && \
+    docker-php-ext-install \
+       mbstring \
+       mysqli \
+       pdo \
+       pdo_mysql \
+       zip \
+       xdebug \
+    
 
     curl -fSL "http://downloads.zend.com/guard/7.0.0/zend-loader-php5.6-linux-x86_64.tar.gz" \
         -o zend-loader-php5.6-linux-x86_64.tar.gz && \
