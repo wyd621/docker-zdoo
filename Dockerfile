@@ -4,7 +4,8 @@ FROM php:5.6-apache
 
 RUN echo "Asia/Shanghai" > /etc/timezone;dpkg-reconfigure -f noninteractive tzdata
 
-RUN echo "session.save_path=/data/session" > /usr/local/etc/php/conf.d/session.ini 
+RUN echo "session.save_path=/data/session" > /usr/local/etc/php/conf.d/session.ini && \
+    mkdir -p /data/session
 
 RUN apt-get update && apt-get install -y \
         php5-mcrypt \
@@ -12,6 +13,7 @@ RUN apt-get update && apt-get install -y \
         libmcrypt-dev \
         libpng-dev \
         vim \
+        unzip \
         net-tools \
     --no-install-recommends && rm -r /var/lib/apt/lists/*
 
@@ -24,21 +26,26 @@ RUN docker-php-ext-install \
         pdo_mysql \
         zip \
         mbstring \
-        xdebug \
         mcrypt \
         gd 
  
 RUN mkdir -p /app/zdoo
 
 COPY docker-entrypoint.sh /app
+
 COPY config/000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY config/apache2.conf /etc/apache2/apache2.conf
+COPY config/ports.conf /etc/apache2/ports.conf
+
+ADD zdoo.zip /app/
+
+RUN cd /app && unzip zdoo.zip && rm zdoo.zip
+
+RUN chown www-data:www-data /app/zdoo/. -R
 
 RUN mkdir -p /app/install && \
     cd /app/install && \
-    curl -fSL http://lang.goodrain.me/tmp/zdoo.zip  -o  zdoo.zip  && \
-    unzip -qon zdoo.zip -d /app/ && \
-    
+
     curl -fSL "http://downloads.zend.com/guard/7.0.0/zend-loader-php5.6-linux-x86_64.tar.gz" \
         -o zend-loader-php5.6-linux-x86_64.tar.gz && \
     tar zxf zend-loader-php5.6-linux-x86_64.tar.gz && \
