@@ -36,7 +36,6 @@ COPY config/000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY config/apache2.conf /etc/apache2/apache2.conf
 COPY config/ports.conf /etc/apache2/ports.conf
 
-
 RUN curl http://lang.goodrain.me/tmp/zdoo.zip -o /app/zdoo.zip
 #ADD zdoo.zip /app/
 
@@ -60,6 +59,7 @@ RUN mkdir -p /app/install && \
     echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20131226/ioncube_loader_lin_5.6.so" > /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini && \
     echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20131226/ZendGuardLoader.so" >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini && \
     echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20131226/opcache.so" >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini && \
+    ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load && \
     
     rm -rf /app/install
 
