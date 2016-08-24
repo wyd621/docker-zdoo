@@ -54,7 +54,7 @@ fi
 
 # 蝉知安装持久化目录
 persist_dirs="system/config system/module system/tmp www/data"
-dest_dir=/data/chanzhi
+dest_dir=/data/chanzhimall5.6
 source_dir=/app/zdoo/chanzhi
 mkdir -p ${dest_dir}
 # 在持久化存储中创建需要的目录
@@ -75,4 +75,6 @@ echo "chanzhi success"
 # 设置权限
 chmod -R 777 /data/
 
-apache2-foreground
+nginx
+
+php-fpm
