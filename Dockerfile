@@ -32,9 +32,9 @@ RUN mkdir -p /app/
 COPY docker-entrypoint.sh /app
 COPY config/nginx.conf /etc/nginx/nginx.conf
 
-#RUN curl http://lang.goodrain.me/tmp/zdoo.zip -o /app/zdoo.zip 
+RUN curl http://lang.goodrain.me/tmp/zdoo.zip -o /app/zdoo.zip
 
-ADD zdoo.zip /app
+#ADD zdoo.zip /app
 
 RUN cd /app && unzip zdoo.zip && rm zdoo.zip
 
@@ -58,7 +58,9 @@ RUN mkdir -p /app/install && \
     echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20131226/opcache.so" >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini && \
     
     rm -rf /app/install
-    
+
+WORKDIR /app/zdoo
+
 VOLUME /data
 
 ENTRYPOINT ["/app/docker-entrypoint.sh"]
