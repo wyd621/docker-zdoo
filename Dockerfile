@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
         vim \
         unzip \
         net-tools \
+        nginx \
     --no-install-recommends && rm -r /var/lib/apt/lists/*
 
 RUN docker-php-ext-install \
