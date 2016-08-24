@@ -36,8 +36,9 @@ COPY config/000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY config/apache2.conf /etc/apache2/apache2.conf
 COPY config/ports.conf /etc/apache2/ports.conf
 
-#RUN curl http://lang.goodrain.me/tmp/zdoo.zip -o /app/zdoo.zip
-ADD zdoo.zip /app/
+
+RUN curl http://lang.goodrain.me/tmp/zdoo.zip -o /app/zdoo.zip
+#ADD zdoo.zip /app/
 
 RUN cd /app && unzip zdoo.zip && rm zdoo.zip
 
