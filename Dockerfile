@@ -2,7 +2,7 @@ FROM php:5.6-fpm
 
 RUN echo "Asia/Shanghai" > /etc/timezone;dpkg-reconfigure -f noninteractive tzdata
 
-RUN echo "session.save_path=/data/session" > /usr/local/etc/php/conf.d/session.ini && \
+RUN echo -e "session.save_path=/data/session\ndisplay_errors = Off" > /usr/local/etc/php/conf.d/custom.ini && \
     mkdir -p /data/session
     
 RUN apt-get update && apt-get install -y \
