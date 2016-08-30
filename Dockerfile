@@ -32,7 +32,7 @@ RUN mkdir -p /app/
 COPY docker-entrypoint.sh /app
 COPY config/nginx.conf /etc/nginx/nginx.conf
 
-RUN curl http://lang.goodrain.me/tmp/zdoo.zip -o /app/zdoo.zip
+RUN curl http://lang.goodrain.me/tmp/zdoo_0829.zip -o /app/zdoo.zip
 
 #ADD zdoo.zip /app
 
