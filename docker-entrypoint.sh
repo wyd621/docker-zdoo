@@ -73,7 +73,7 @@ done
 echo "chanzhi success"
 
 # 设置权限
-chmod -R www-data.www-data /data/
+chown -R www-data.www-data /data/
 
 php5-fpm
 
