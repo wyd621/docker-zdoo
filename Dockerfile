@@ -1,4 +1,4 @@
-FROM trusty-20160819
+FROM ubuntu:trusty-20160819
 MAINTAINER lichao <lic@goodrain.com>
 
 RUN echo "Asia/Shanghai" > /etc/timezone;dpkg-reconfigure -f noninteractive tzdata
