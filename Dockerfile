@@ -36,7 +36,7 @@ COPY config/zdoo.conf /etc/nginx/sites-available/zdoo.conf
 RUN ln -s /etc/nginx/sites-available/zdoo.conf /etc/nginx/sites-enabled/zdoo.conf && \
     rm /etc/nginx/sites-enabled/default
 
-RUN curl http://lang.goodrain.me/tmp/zdoo_0829.zip -o /app/zdoo.zip
+RUN curl http://lang.goodrain.me/tmp/zdoo_0831.zip -o /app/zdoo.zip
 
 
 RUN cd /app && unzip zdoo.zip && rm zdoo.zip
