@@ -36,12 +36,12 @@ COPY config/zdoo.conf /etc/nginx/sites-available/zdoo.conf
 RUN ln -s /etc/nginx/sites-available/zdoo.conf /etc/nginx/sites-enabled/zdoo.conf && \
     rm /etc/nginx/sites-enabled/default
 
-RUN curl http://lang.goodrain.me/tmp/zdoo_0831.zip -o /app/zdoo.zip
+RUN curl http://lang.goodrain.me/tmp/zdoo_0831.tar.gz -o /app/zdoo_0831.tar.gz
 
 
-RUN cd /app && unzip zdoo.zip && rm zdoo.zip
+RUN cd /app && tar zxvfp zdoo_0831.tar.gz && rm zdoo_0831.tar.gz
 
-RUN chown www-data:www-data /app/zdoo/. -R
+RUN chown www-data:www-data /app/zdoo -R
 
 RUN mkdir -p /app/install && \
     cd /app/install && \
