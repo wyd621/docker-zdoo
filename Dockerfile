@@ -3,6 +3,7 @@ MAINTAINER lichao <lic@goodrain.com>
 
 RUN echo "Asia/Shanghai" > /etc/timezone;dpkg-reconfigure -f noninteractive tzdata
 
+COPY sources.list /etc/apt/sources.list
 RUN apt-get update && apt-get install -y software-properties-common
 
 ENV LANG="en_US.UTF8"
