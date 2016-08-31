@@ -1,16 +1,12 @@
-FROM ubuntu:14.04
+FROM trusty-20160819
 MAINTAINER lichao <lic@goodrain.com>
 
 RUN echo "Asia/Shanghai" > /etc/timezone;dpkg-reconfigure -f noninteractive tzdata
 
-
 RUN apt-get update && apt-get install -y software-properties-common
 
 ENV LANG="en_US.UTF8"
-
 RUN echo -e "LANG=\"en_US.UTF-8\"\nLANGUAGE=\"en_US:en\"" > /etc/default/locale
-
-
 RUN locale-gen en_US.UTF-8
 
 
@@ -40,9 +36,8 @@ COPY config/zdoo.conf /etc/nginx/sites-available/zdoo.conf
 RUN ln -s /etc/nginx/sites-available/zdoo.conf /etc/nginx/sites-enabled/zdoo.conf && \
     rm /etc/nginx/sites-enabled/default
 
-#RUN curl http://lang.goodrain.me/tmp/zdoo_0829.zip -o /app/zdoo.zip
+RUN curl http://lang.goodrain.me/tmp/zdoo_0829.zip -o /app/zdoo.zip
 
-ADD zdoo.zip /app
 
 RUN cd /app && unzip zdoo.zip && rm zdoo.zip
 
@@ -70,11 +65,8 @@ RUN mkdir -p /app/install && \
 
     rm -rf /app/install
 
-COPY run.sh /app
-RUN chmod +x /app/run.sh
 
 WORKDIR /app/zdoo
 VOLUME /data
 
-#ENTRYPOINT ["/app/run.sh"]
 ENTRYPOINT ["/app/docker-entrypoint.sh"]
