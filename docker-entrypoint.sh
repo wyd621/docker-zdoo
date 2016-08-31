@@ -77,4 +77,4 @@ chmod -R www-data.www-data /data/
 
 php5-fpm
 
-nginx
+nginx -g 'daemon off;'
