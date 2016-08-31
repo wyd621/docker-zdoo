@@ -73,12 +73,8 @@ done
 echo "chanzhi success"
 
 # 设置权限
-chmod -R 777 /data/
-
-nginx
+chmod -R www-data.www-data /data/
 
 php5-fpm
 
-touch /tmp/log.log
-
-tail -f /tmp/log.log
+nginx
