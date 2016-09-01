@@ -3,7 +3,7 @@
 [ $DEBUG ] && set -x
 
 # link file
-for d in "ranzhi zentao chanzhi"
+for d in ranzhi zentao chanzhi
 do
   # 判断是否是第一次启动应用
   if [ -f /mnt/upload/${d}/.inited ];then
