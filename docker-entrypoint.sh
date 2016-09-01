@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+[ $DEBUG ] && set -x
+
 # link file
 for d in "ranzhi zentao chanzhi"
 do
