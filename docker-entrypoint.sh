@@ -10,7 +10,7 @@ do
     mv /app/zdoo/${d}/www/data /app/zdoo/${d}/www/data.bak
   else
     [ -d /app/zdoo/${d}/www/data ] && \
-    mv /app/zdoo/${d}/www/data/* /mnt/upload/${d}/ && \
+    cp -rp /app/zdoo/${d}/www/data/* /mnt/upload/${d}/ && \
     rm -rf /app/zdoo/${d}/www/data
   fi
 
