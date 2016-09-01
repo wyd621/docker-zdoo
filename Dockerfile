@@ -4,7 +4,7 @@ MAINTAINER lichao <lic@goodrain.com>
 RUN echo "Asia/Shanghai" > /etc/timezone;dpkg-reconfigure -f noninteractive tzdata
 
 COPY sources.list /etc/apt/sources.list
-RUN apt-get update && apt-get install -y software-properties-common
+RUN apt-get update && apt-get install -y software-properties-common git subversion
 
 ENV LANG="en_US.UTF8"
 RUN echo -e "LANG=\"en_US.UTF-8\"\nLANGUAGE=\"en_US:en\"" > /etc/default/locale
