@@ -47,12 +47,12 @@ RUN chown www-data:www-data /app/zdoo -R
 RUN mkdir -p /app/install && \
     cd /app/install && \
 
-    curl -fsSL "http://downloads.zend.com/guard/7.0.0/zend-loader-php5.6-linux-x86_64.tar.gz" \
+    curl -fsSL "http://lang.goodrain.me/tmp/zend-loader-php5.6-linux-x86_64.tar.gz" \
         -o zend-loader-php5.6-linux-x86_64.tar.gz && \
     tar zxf zend-loader-php5.6-linux-x86_64.tar.gz && \
     cp zend-loader-php5.6-linux-x86_64/*.so /usr/lib/php5/20131226/ && \
 
-    curl -fsSL "http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz" \
+    curl -fsSL "http://lang.goodrain.me/tmp/ioncube_loaders_lin_x86-64.tar.gz" \
         -o ioncube_loaders_lin_x86-64.tar.gz && \
     tar zxf ioncube_loaders_lin_x86-64.tar.gz && \
     cp ioncube/ioncube_loader_lin_5.6.so /usr/lib/php5/20131226/ && \
