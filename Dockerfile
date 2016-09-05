@@ -1,6 +1,9 @@
 FROM ubuntu:trusty-20160819
 MAINTAINER lichao <lic@goodrain.com>
 
+
+ENV ZDOO_FILE="zdoo_0905.tar.gz"
+
 RUN echo "Asia/Shanghai" > /etc/timezone;dpkg-reconfigure -f noninteractive tzdata
 
 COPY sources.list /etc/apt/sources.list
@@ -37,10 +40,10 @@ COPY config/zdoo.conf /etc/nginx/sites-available/zdoo.conf
 RUN ln -s /etc/nginx/sites-available/zdoo.conf /etc/nginx/sites-enabled/zdoo.conf && \
     rm /etc/nginx/sites-enabled/default
 
-RUN curl http://lang.goodrain.me/tmp/zdoo_0831.tar.gz -o /app/zdoo_0831.tar.gz
+RUN curl http://lang.goodrain.me/tmp/${ZDOO_FILE} -o /app/zdoo.tar.gz
 
 
-RUN cd /app && tar zxfp zdoo_0831.tar.gz && rm zdoo_0831.tar.gz
+RUN cd /app && tar zxfp zdoo.tar.gz && rm zdoo.tar.gz
 
 RUN chown www-data:www-data /app/zdoo -R
 
