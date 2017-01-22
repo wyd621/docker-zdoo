@@ -12,6 +12,7 @@ ENV LANG="en_US.UTF8"
 RUN echo -e "LANG=\"en_US.UTF-8\"\nLANGUAGE=\"en_US:en\"" > /etc/default/locale
 RUN locale-gen en_US.UTF-8
 
+RUN apt-get install --reinstall ca-certificates
 RUN add-apt-repository ppa:ondrej/php5 && apt-get -y update && apt-get -y upgrade
 
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys E5267A6C && \
