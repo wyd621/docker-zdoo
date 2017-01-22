@@ -12,8 +12,7 @@ ENV LANG="en_US.UTF8"
 RUN echo -e "LANG=\"en_US.UTF-8\"\nLANGUAGE=\"en_US:en\"" > /etc/default/locale
 RUN locale-gen en_US.UTF-8
 
-
-RUN add-apt-repository ppa:ondrej/php && apt-get -y update && apt-get -y upgrade
+RUN add-apt-repository ppa:ondrej/php5 && apt-get -y update && apt-get -y upgrade
 
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys E5267A6C && \
     echo 'deb http://ppa.launchpad.net/ondrej/php5/ubuntu trusty main' > /etc/apt/sources.list.d/ondrej-php5-trusty.list && \
@@ -31,7 +30,6 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys E5267A6C && \
         php5-curl\
         php5-gd && \
      apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 
 RUN mkdir -p /app/
 
