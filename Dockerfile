@@ -65,12 +65,12 @@ RUN mkdir -p /app/install && \
     tar zxf ioncube_loaders_lin_x86-64.tar.gz && \
     cp ioncube/ioncube_loader_lin_5.6.so /usr/lib/php5/20131226/ && \
 
-    echo "zend_extension=/usr/lib/php5/20131226/ioncube_loader_lin_5.6.so" > /etc/php5/mods-available/ioncube_loader_lin.ini && \
-    echo "zend_extension=/usr/lib/php5/20131226/ZendGuardLoader.so" > /etc/php5/mods-available/zendGuardLoader.ini && \
+    #echo "zend_extension=/usr/lib/php5/20131226/ioncube_loader_lin_5.6.so" > /etc/php5/mods-available/ioncube_loader_lin.ini && \
+    #echo "zend_extension=/usr/lib/php5/20131226/ZendGuardLoader.so" > /etc/php5/mods-available/zendGuardLoader.ini && \
 
-    ln -s /etc/php5/mods-available/zendGuardLoader.ini /etc/php5/fpm/conf.d/20-zendGuardLoader.ini && \
+    #ln -s /etc/php5/mods-available/zendGuardLoader.ini /etc/php5/fpm/conf.d/20-zendGuardLoader.ini && \
 
-    ln -s /etc/php5/mods-available/ioncube_loader_lin.ini /etc/php5/fpm/conf.d/01-ioncube_loader_lin.ini && \
+    #ln -s /etc/php5/mods-available/ioncube_loader_lin.ini /etc/php5/fpm/conf.d/01-ioncube_loader_lin.ini && \
 
     rm -rf /app/install
 
