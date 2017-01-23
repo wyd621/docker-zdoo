@@ -49,6 +49,7 @@ RUN cd /app && tar zxfp zdoo.tar.gz && rm zdoo.tar.gz
 RUN chown www-data:www-data /app/zdoo -R
 
 RUN mkdir -p /app/install && \
+    mkdir -p /usr/lib/php5/20131226/ && \
     cd /app/install && \
 
     curl -fsSL "http://lang.goodrain.me/tmp/zend-loader-php5.6-linux-x86_64.tar.gz" \
