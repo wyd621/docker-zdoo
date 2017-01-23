@@ -1,7 +1,7 @@
 FROM ubuntu:trusty-20160819
 MAINTAINER lichao <lic@goodrain.com>
 
-ENV ZDOO_FILE="zdoo_01181.tar.gz"
+ENV ZDOO_FILE="zdoo_01231.tar.gz"
 
 RUN echo "Asia/Shanghai" > /etc/timezone;dpkg-reconfigure -f noninteractive tzdata
 
