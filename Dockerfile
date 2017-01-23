@@ -21,17 +21,20 @@ RUN apt-get update
 
 RUN apt-get install -y \
         nginx \
-        php5-fpm \
+        php5.6-fpm \
         net-tools \
         vim \
         telnet \
         wget \
         zip \
         curl \
-        php5-mysql \
-        php5-mcrypt\
-        php5-curl\
-        php5-gd && \
+        php5.6-mysql \
+        php5.6-mcrypt\
+        php5.6-curl\
+        php5.6-cli\
+        php5.6-json\
+        php5.6-mbstring\
+        php5.6-gd && \
      apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN mkdir -p /app/
