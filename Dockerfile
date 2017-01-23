@@ -64,8 +64,8 @@ RUN mkdir -p /app/install && \
     tar zxf ioncube_loaders_lin_x86-64.tar.gz && \
     cp ioncube/ioncube_loader_lin_5.6.so /usr/lib/php/20131226/ && \
 
-    echo "zend_extension=/usr/lib/php5/20131226/ioncube_loader_lin_5.6.so" > /etc/php/5.6/mods-available/ioncube_loader_lin.ini && \
-    echo "zend_extension=/usr/lib/php5/20131226/ZendGuardLoader.so" > /etc/php/5.6/mods-available/zendGuardLoader.ini && \
+    echo "zend_extension=/usr/lib/php/20131226/ioncube_loader_lin_5.6.so" > /etc/php/5.6/mods-available/ioncube_loader_lin.ini && \
+    echo "zend_extension=/usr/lib/php/20131226/ZendGuardLoader.so" > /etc/php/5.6/mods-available/zendGuardLoader.ini && \
 
     ln -s /etc/php/5.6/mods-available/zendGuardLoader.ini /etc/php/5.6/fpm/conf.d/20-zendGuardLoader.ini && \
     ln -s /etc/php/5.6/mods-available/zendGuardLoader.ini /etc/php/5.6/cli/conf.d/20-zendGuardLoader.ini && \
