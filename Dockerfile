@@ -72,6 +72,8 @@ RUN mkdir -p /app/install && \
     ln -s /etc/php/5.6/mods-available/ioncube_loader_lin.ini /etc/php/5.6/fpm/conf.d/01-ioncube_loader_lin.ini && \
     ln -s /etc/php/5.6/mods-available/ioncube_loader_lin.ini /etc/php/5.6/cli/conf.d/01-ioncube_loader_lin.ini && \
 
+    sed -i 's/^pm\.max_children.*$/pm\.max_children = 500/g' /etc/php/5.6/fpm/pool.d/www.conf && \
+
     rm -rf /app/install
 
 
