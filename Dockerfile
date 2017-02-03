@@ -73,7 +73,7 @@ RUN mkdir -p /app/install && \
     ln -s /etc/php/5.6/mods-available/ioncube_loader_lin.ini /etc/php/5.6/cli/conf.d/01-ioncube_loader_lin.ini && \
 
     sed -i 's/^pm\.max_children.*$/pm\.max_children = 2/g' /etc/php/5.6/fpm/pool.d/www.conf && \
-    sed -i 's/^pm\.start_serviers.*$/pm\.start_serviers = 1/g' /etc/php/5.6/fpm/pool.d/www.conf && \
+    sed -i 's/^pm\.start_servers.*$/pm\.start_servers = 1/g' /etc/php/5.6/fpm/pool.d/www.conf && \
     sed -i 's/^;pm\.max_requests.*$/pm\.max_requests = 10000/g' /etc/php/5.6/fpm/pool.d/www.conf && \
 
     rm -rf /app/install
