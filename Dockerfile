@@ -20,14 +20,15 @@ RUN echo 'deb-src http://ppa.launchpad.net/ondrej/php/ubuntu trusty main' >> /et
 RUN apt-get update
 
 RUN apt-get install -y \
-        nginx \
-        php5.6-fpm \
+        apache2 \
+        libapache2-mod-php \
         net-tools \
         vim \
         telnet \
         wget \
         zip \
         curl \
+        php5.6-common \
         php5.6-mysql \
         php5.6-mcrypt\
         php5.6-curl\
@@ -40,9 +41,10 @@ RUN apt-get install -y \
 RUN mkdir -p /app/
 
 COPY docker-entrypoint.sh /app
-COPY config/zdoo.conf /etc/nginx/sites-available/zdoo.conf
-RUN ln -s /etc/nginx/sites-available/zdoo.conf /etc/nginx/sites-enabled/zdoo.conf && \
-    rm /etc/nginx/sites-enabled/default
+COPY config/zdoo.apache.conf /etc/apache2/sites-available/zdoo.conf
+RUN rm /etc/apache2/sites-enabled/* && \
+    ln -s /etc/apache2/sites-available/zdoo.conf /etc/apache2/sites-enabled/zdoo.conf && \
+    a2enmod rewrite
 
 RUN curl http://lang.goodrain.me/tmp/${ZDOO_FILE} -o /app/zdoo.tar.gz
 
