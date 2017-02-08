@@ -21,14 +21,14 @@ RUN apt-get update
 
 RUN apt-get install -y \
         apache2 \
-        libapache2-mod-php \
+        libapache2-mod-php5.6 \
         net-tools \
         vim \
         telnet \
         wget \
         zip \
         curl \
-        php5.6-common \
+        php5.6 \
         php5.6-mysql \
         php5.6-mcrypt\
         php5.6-curl\
