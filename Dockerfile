@@ -82,4 +82,4 @@ RUN mkdir -p /app/install && \
 WORKDIR /app/zdoo
 VOLUME /data
 
-ENTRYPOINT ["/app/docker-entrypoint.sh"]
+#ENTRYPOINT ["/app/docker-entrypoint.sh"]
