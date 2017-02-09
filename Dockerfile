@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
         libmcrypt-dev \
         libpng-dev \
         vim \
-        zip \
+        unzip \
         curl \
         wget \
         net-tools \
