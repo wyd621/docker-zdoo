@@ -15,13 +15,7 @@ RUN apt-get update && apt-get install -y \
         curl \
         wget \
         net-tools \
-        php5 \
-        php5-curl \
-        php5-gd \
-        php5-mysql \
-        php5-mcrypt \
     --no-install-recommends && rm -r /var/lib/apt/lists/*
-
  
 RUN mkdir -p /app/
 
