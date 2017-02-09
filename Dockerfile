@@ -6,20 +6,23 @@ ENV ZDOO_FILE="zdoo_201701243.tar.gz"
 RUN echo "Asia/Shanghai" > /etc/timezone;dpkg-reconfigure -f noninteractive tzdata
 
 COPY sources.list /etc/apt/sources.list
-RUN apt-get update && apt-get install -y software-properties-common git subversion apache2
+RUN apt-get update && apt-get install -y software-properties-common git subversion
 
 ENV LANG="en_US.UTF8"
 RUN echo -e "LANG=\"en_US.UTF-8\"\nLANGUAGE=\"en_US:en\"" > /etc/default/locale
 RUN locale-gen en_US.UTF-8
 
-RUN sudo add-apt-repository ppa:ondrej/php && apt-get -y update && apt-get -y upgrade
+RUN sudo add-apt-repository ppa:ondrej/php && sudo add-apt-repository ppa:ondrej/apache2 && apt-get -y update && apt-get -y upgrade
 
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys E5267A6C
-RUN echo 'deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main' > /etc/apt/sources.list.d/ondrej-php5-trusty.list
-RUN echo 'deb-src http://ppa.launchpad.net/ondrej/php/ubuntu trusty main' >> /etc/apt/sources.list.d/ondrej-php5-trusty.list
+RUN echo 'deb http://ppa.launchpad.net/ondrej/apache2/ubuntu trusty main' > /etc/apt/sources.list.d/ondrej-apache2-trusty.list
+RUN echo 'deb-src http://ppa.launchpad.net/ondrej/apache2/ubuntu trusty main' >> /etc/apt/sources.list.d/ondrej-apache2-trusty.list
+RUN echo 'deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main' > /etc/apt/sources.list.d/ondrej-php-trusty.list
+RUN echo 'deb-src http://ppa.launchpad.net/ondrej/php/ubuntu trusty main' >> /etc/apt/sources.list.d/ondrej-php-trusty.list
 RUN apt-get update
 
 RUN apt-get install -y \
+        apache2 \
         libapache2-mod-php5.6 \
         net-tools \
         vim \
