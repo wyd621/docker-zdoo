@@ -22,7 +22,6 @@ RUN echo 'deb-src http://ppa.launchpad.net/ondrej/php/ubuntu trusty main' >> /et
 RUN apt-get update
 
 RUN apt-get install -y \
-        nginx \
         apache2 \
         libapache2-mod-php5.6 \
         net-tools \
@@ -32,7 +31,6 @@ RUN apt-get install -y \
         zip \
         curl \
         php5.6 \
-        php5.6-fpm \
         php5.6-mysql \
         php5.6-mcrypt\
         php5.6-curl\
@@ -45,9 +43,10 @@ RUN apt-get install -y \
 RUN mkdir -p /app/
 
 COPY docker-entrypoint.sh /app
-COPY config/zdoo.conf /etc/nginx/sites-available/zdoo.conf
-RUN ln -s /etc/nginx/sites-available/zdoo.conf /etc/nginx/sites-enabled/zdoo.conf && \
-    rm /etc/nginx/sites-enabled/default
+COPY config/zdoo.apache.conf /etc/apache2/sites-available/zdoo.conf
+RUN rm /etc/apache2/sites-enabled/* && \
+    ln -s /etc/apache2/sites-available/zdoo.conf /etc/apache2/sites-enabled/zdoo.conf && \
+    a2enmod rewrite
 
 RUN curl http://lang.goodrain.me/tmp/${ZDOO_FILE} -o /app/zdoo.tar.gz
 
@@ -72,12 +71,10 @@ RUN mkdir -p /app/install && \
     echo "zend_extension=/usr/lib/php/20131226/ioncube_loader_lin_5.6.so" > /etc/php/5.6/mods-available/ioncube_loader_lin.ini && \
     echo "zend_extension=/usr/lib/php/20131226/ZendGuardLoader.so" > /etc/php/5.6/mods-available/zendGuardLoader.ini && \
 
-    ln -s /etc/php/5.6/mods-available/zendGuardLoader.ini /etc/php/5.6/fpm/conf.d/20-zendGuardLoader.ini && \
+    ln -s /etc/php/5.6/mods-available/zendGuardLoader.ini /etc/php/5.6/apache2/conf.d/20-zendGuardLoader.ini && \
     ln -s /etc/php/5.6/mods-available/zendGuardLoader.ini /etc/php/5.6/cli/conf.d/20-zendGuardLoader.ini && \
-    ln -s /etc/php/5.6/mods-available/ioncube_loader_lin.ini /etc/php/5.6/fpm/conf.d/01-ioncube_loader_lin.ini && \
+    ln -s /etc/php/5.6/mods-available/ioncube_loader_lin.ini /etc/php/5.6/apache2/conf.d/01-ioncube_loader_lin.ini && \
     ln -s /etc/php/5.6/mods-available/ioncube_loader_lin.ini /etc/php/5.6/cli/conf.d/01-ioncube_loader_lin.ini && \
-
-    sed -i 's/^;pm\.max_requests.*$/pm\.max_requests = 200000/g' /etc/php/5.6/fpm/pool.d/www.conf && \
 
     rm -rf /app/install
 
