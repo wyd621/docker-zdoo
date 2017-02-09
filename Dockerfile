@@ -6,7 +6,7 @@ ENV ZDOO_FILE="zdoo_201701243.tar.gz"
 RUN echo "Asia/Shanghai" > /etc/timezone;dpkg-reconfigure -f noninteractive tzdata
 
 COPY sources.list /etc/apt/sources.list
-RUN apt-get update && apt-get install -y software-properties-common git subversion
+RUN apt-get update && apt-get install -y software-properties-common git subversion apache2
 
 ENV LANG="en_US.UTF8"
 RUN echo -e "LANG=\"en_US.UTF-8\"\nLANGUAGE=\"en_US:en\"" > /etc/default/locale
@@ -20,7 +20,6 @@ RUN echo 'deb-src http://ppa.launchpad.net/ondrej/php/ubuntu trusty main' >> /et
 RUN apt-get update
 
 RUN apt-get install -y \
-        apache2 \
         libapache2-mod-php5.6 \
         net-tools \
         vim \
