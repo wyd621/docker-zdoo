@@ -1,59 +1,42 @@
-FROM ubuntu:trusty-20160819
-MAINTAINER lichao <lic@goodrain.com>
+FROM php:5.6-apache
 
 ENV ZDOO_FILE="zdoo_201701243.tar.gz"
-
+# 时区设置
 RUN echo "Asia/Shanghai" > /etc/timezone;dpkg-reconfigure -f noninteractive tzdata
 
-COPY sources.list /etc/apt/sources.list
-RUN apt-get update && apt-get install -y software-properties-common git subversion
-
-ENV LANG="en_US.UTF8"
-RUN echo -e "LANG=\"en_US.UTF-8\"\nLANGUAGE=\"en_US:en\"" > /etc/default/locale
-RUN locale-gen en_US.UTF-8
-
-RUN sudo add-apt-repository ppa:ondrej/php && sudo add-apt-repository ppa:ondrej/apache2 && apt-get -y update && apt-get -y upgrade
-
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys E5267A6C
-RUN echo 'deb http://ppa.launchpad.net/ondrej/apache2/ubuntu trusty main' > /etc/apt/sources.list.d/ondrej-apache2-trusty.list
-RUN echo 'deb-src http://ppa.launchpad.net/ondrej/apache2/ubuntu trusty main' >> /etc/apt/sources.list.d/ondrej-apache2-trusty.list
-RUN echo 'deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main' > /etc/apt/sources.list.d/ondrej-php-trusty.list
-RUN echo 'deb-src http://ppa.launchpad.net/ondrej/php/ubuntu trusty main' >> /etc/apt/sources.list.d/ondrej-php-trusty.list
-RUN apt-get update
-
-RUN apt-get install -y \
-        apache2 \
-        libapache2-mod-php5.6 \
-        net-tools \
+RUN apt-get update && apt-get install -y \
+        software-properties-common git subversion
+        libmcrypt4 \
+        libmcrypt-dev \
+        libpng-dev \
         vim \
-        telnet \
-        wget \
         zip \
         curl \
-        php5.6 \
-        php5.6-mysql \
-        php5.6-mcrypt\
-        php5.6-curl\
-        php5.6-cli\
-        php5.6-json\
-        php5.6-mbstring\
-        php5.6-gd && \
-     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+        wget \
+        net-tools \
+    --no-install-recommends && rm -r /var/lib/apt/lists/*
 
+RUN docker-php-ext-install \
+        mysql \
+        mysqli \
+        sockets \
+        pdo \
+        curl \
+        pdo_mysql \
+        zip \
+        json \
+        mbstring \
+        mcrypt \
+        gd 
+ 
 RUN mkdir -p /app/
 
 COPY docker-entrypoint.sh /app
-COPY config/zdoo.apache.conf /etc/apache2/sites-available/zdoo.conf
-RUN rm /etc/apache2/sites-enabled/* && \
-    ln -s /etc/apache2/sites-available/zdoo.conf /etc/apache2/sites-enabled/zdoo.conf && \
-    a2enmod rewrite
 
 RUN curl http://lang.goodrain.me/tmp/${ZDOO_FILE} -o /app/zdoo.tar.gz
-
-
 RUN cd /app && tar zxfp zdoo.tar.gz && rm zdoo.tar.gz
 
-RUN chown www-data:www-data /app/zdoo -R
+RUN chown www-data:www-data /app/zdoo/. -R
 
 RUN mkdir -p /app/install && \
     cd /app/install && \
@@ -78,8 +61,8 @@ RUN mkdir -p /app/install && \
 
     rm -rf /app/install
 
-
 WORKDIR /app/zdoo
+
 VOLUME /data
 
 ENTRYPOINT ["/app/docker-entrypoint.sh"]

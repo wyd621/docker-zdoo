@@ -23,4 +23,5 @@ chown -R www-data.www-data /mnt/
 
 #/etc/init.d/php5.6-fpm start
 #nginx -g 'daemon off;'
-apache2ctl start
+#apache2ctl start
+apache2-foreground
