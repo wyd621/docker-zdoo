@@ -17,18 +17,18 @@ RUN apt-get update && apt-get install -y \
         net-tools \
     --no-install-recommends && rm -r /var/lib/apt/lists/*
 
-RUN docker-php-ext-install \
-        mysql \
-        mysqli \
-        sockets \
-        pdo \
-        curl \
-        pdo_mysql \
-        zip \
-        json \
-        mbstring \
-        mcrypt \
-        gd 
+# RUN docker-php-ext-install \
+#         mysql \
+#         mysqli \
+#         sockets \
+#         pdo \
+#         curl \
+#         pdo_mysql \
+#         zip \
+#         json \
+#         mbstring \
+#         mcrypt \
+#         gd 
  
 RUN mkdir -p /app/
 
