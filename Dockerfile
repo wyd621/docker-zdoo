@@ -4,6 +4,7 @@ ENV ZDOO_FILE="zdoo_201701243.tar.gz"
 # 时区设置
 RUN echo "Asia/Shanghai" > /etc/timezone;dpkg-reconfigure -f noninteractive tzdata
 
+RUN rm -rf  /usr/local/bin/php /usr/local/etc/php /usr/local/lib/php /usr/local/php
 RUN apt-get update && apt-get install -y \
         git \
         subversion \
@@ -15,6 +16,11 @@ RUN apt-get update && apt-get install -y \
         curl \
         wget \
         net-tools \
+        php5 \
+        php5-curl \
+        php5-gd \
+        php5-mysql \
+        php5-mcrypt \
     --no-install-recommends && rm -r /var/lib/apt/lists/*
  
 RUN mkdir -p /app/
