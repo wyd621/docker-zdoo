@@ -69,12 +69,12 @@ RUN mkdir -p /app/install && \
     echo "zend_extension=/usr/lib/php/20131226/ioncube_loader_lin_5.6.so" > /etc/php/5.6/mods-available/ioncube_loader_lin.ini && \
     echo "zend_extension=/usr/lib/php/20131226/ZendGuardLoader.so" > /etc/php/5.6/mods-available/zendGuardLoader.ini && \
 
-    ln -s /etc/php/5.6/mods-available/zendGuardLoader.ini /etc/php/5.6/fpm/conf.d/20-zendGuardLoader.ini && \
-    ln -s /etc/php/5.6/mods-available/zendGuardLoader.ini /etc/php/5.6/cli/conf.d/20-zendGuardLoader.ini && \
-    ln -s /etc/php/5.6/mods-available/ioncube_loader_lin.ini /etc/php/5.6/fpm/conf.d/01-ioncube_loader_lin.ini && \
-    ln -s /etc/php/5.6/mods-available/ioncube_loader_lin.ini /etc/php/5.6/cli/conf.d/01-ioncube_loader_lin.ini && \
+#    ln -s /etc/php/5.6/mods-available/zendGuardLoader.ini /etc/php/5.6/fpm/conf.d/20-zendGuardLoader.ini && \
+#    ln -s /etc/php/5.6/mods-available/zendGuardLoader.ini /etc/php/5.6/cli/conf.d/20-zendGuardLoader.ini && \
+#    ln -s /etc/php/5.6/mods-available/ioncube_loader_lin.ini /etc/php/5.6/fpm/conf.d/01-ioncube_loader_lin.ini && \
+#    ln -s /etc/php/5.6/mods-available/ioncube_loader_lin.ini /etc/php/5.6/cli/conf.d/01-ioncube_loader_lin.ini && \
 
-    sed -i 's/^;pm\.max_requests.*$/pm\.max_requests = 200000/g' /etc/php/5.6/fpm/pool.d/www.conf && \
+#    sed -i 's/^;pm\.max_requests.*$/pm\.max_requests = 200000/g' /etc/php/5.6/fpm/pool.d/www.conf && \
 
     rm -rf /app/install
 
