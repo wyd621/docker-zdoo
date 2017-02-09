@@ -21,4 +21,6 @@ done
 # 设置权限
 chown -R www-data.www-data /mnt/
 
-/etc/init.d/apache2 start
+#/etc/init.d/apache2 start
+/etc/init.d/php5.6-fpm start
+nginx -g 'daemon off;'
