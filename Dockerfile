@@ -5,7 +5,8 @@ ENV ZDOO_FILE="zdoo_201701243.tar.gz"
 RUN echo "Asia/Shanghai" > /etc/timezone;dpkg-reconfigure -f noninteractive tzdata
 
 RUN apt-get update && apt-get install -y \
-        software-properties-common git subversion
+        git \
+        subversion \
         libmcrypt4 \
         libmcrypt-dev \
         libpng-dev \
